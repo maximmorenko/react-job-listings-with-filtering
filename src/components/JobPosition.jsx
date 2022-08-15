@@ -4,10 +4,11 @@ import { Card } from 'UI/Card';
 import { Stack } from 'UI/Stack';
 
 const JobPosition = ({
+  // ждем пропсы из джоблист, все что есть в json 
   id,
   company,
   logo,
-  new: isNew,
+  new: isNew, //так как слово new зарезервировано в JS то переименовуем его в isNew
   featured,
   position,
   role,
@@ -18,12 +19,13 @@ const JobPosition = ({
   languages,
   tools,
 }) => {
-  const badges = [].concat(role, level, ...languages, ...tools);
+  const badges = [].concat(role, level, ...languages, ...tools); //собираем бедж из разных данных и записываем в одну переменную
 
   return (
     <Card isFeatured={featured}>
       <div className='job-position'>
         <div className='job-position-info'>
+          {/* на основании пропсов формируем карточку */}
           <img
             className='job-position-avatar'
             src={logo}
@@ -34,11 +36,13 @@ const JobPosition = ({
               <h3>{company}</h3>
               {(isNew || featured) && (
                 <Stack>
+                  {/* если есть проп new то добавляем бедж нью со своей стилизацией */}
                   {isNew && (
                     <Badge variant="rounded" colorScheme="primary">
                       NEW!
                     </Badge>
                   )}
+                  {/* если есть проп featured то добавляем бедж featured со своей стилизацией */}
                   {featured && (
                     <Badge variant="rounded" colorScheme="dark">
                       FEATURED
@@ -65,6 +69,7 @@ const JobPosition = ({
         </div>
         <Stack>
           {badges.map(item => (
+            // пробежим по массиву с беджами и заполним стек соответствующими беджами
             <Badge key={item}>{item}</Badge>
           ))}
         </Stack>
