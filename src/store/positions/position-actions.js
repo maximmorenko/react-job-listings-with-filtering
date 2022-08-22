@@ -4,7 +4,7 @@
 // создаем константу для типа нашего єкшина
 export const ADD_POSITIONS = 'ADD_POSITIONS';
 
-// создаем экшн криейтон, который принимает позиции и возвращает обект
+// создаем экшн криейтор, который принимает позиции и возвращает обект
 export const addPositions = (positions) => ({
     type: ADD_POSITIONS,
     positions,

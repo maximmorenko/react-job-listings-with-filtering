@@ -1,6 +1,6 @@
 export const selectAllPositions = (state) => state.positions; // positions - ключ позишнРедюсера из комбаинРедюсера
 
-// жункция фильтрации, принимает не только стейт но и наборы фильтров
+// функция фильтрации, принимает не только стейт но и наборы фильтров
 export const selectVisiblePositions = (state, filters = []) => {
     // если фильтров нет, т.е длина массива равна 0, то возвращаем текущие позиции из стейта
     if (filters.length === 0) return state.positions;
