@@ -1,3 +1,7 @@
 import {combineReducers} from 'redux'
 
-export const rootReduser = combineReducers({}); // комбинируем все редюсеры
+import { positionsReduser } from './positions/position-reduser';
+
+export const rootReduser = combineReducers({
+    positions: positionsReduser,
+}); // комбинируем все редюсеры
