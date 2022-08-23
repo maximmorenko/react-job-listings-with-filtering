@@ -4,94 +4,99 @@ import { Card } from 'UI/Card';
 import { Stack } from 'UI/Stack';
 
 const JobPosition = ({
-  // ждем пропсы из джоблист, все что есть в json 
-  id,
-  company,
-  logo,
-  new: isNew, //так как слово new зарезервировано в JS то переименовуем его в isNew
-  featured,
-  position,
-  role,
-  level,
-  postedAt,
-  contract,
-  location,
-  languages,
-  tools,
-}) => {
-  const badges = [].concat(role, level, ...languages, ...tools); //собираем бедж из разных данных и записываем в одну переменную
+        // ждем пропсы из джоблист, все что есть в json 
+        id,
+        company,
+        logo,
+        new: isNew, //так как слово new зарезервировано в JS то переименовуем его в isNew
+        featured,
+        position,
+        role,
+        level,
+        postedAt,
+        contract,
+        location,
+        languages,
+        tools,
+        hendleAddFilter,
+    }) => {
+    const badges = [].concat(role, level, ...languages, ...tools); //собираем бедж из разных данных и записываем в одну переменную
 
-  return (
-    <Card isFeatured={featured}>
-      <div className='job-position'>
-        <div className='job-position-info'>
-          {/* на основании пропсов формируем карточку */}
-          <img
-            className='job-position-avatar'
-            src={logo}
-            alt={company}
-          />
-          <div className='job-position-body'>
-            <div className='job-postion-company'>
-              <h3>{company}</h3>
-              {(isNew || featured) && (
-                <Stack>
-                  {/* если есть проп new то добавляем бедж нью со своей стилизацией */}
-                  {isNew && (
-                    <Badge variant="rounded" colorScheme="primary">
-                      NEW!
-                    </Badge>
-                  )}
-                  {/* если есть проп featured то добавляем бедж featured со своей стилизацией */}
-                  {featured && (
-                    <Badge variant="rounded" colorScheme="dark">
-                      FEATURED
-                    </Badge>
-                  )}
-                </Stack>
-              )}
+    return (
+        <Card isFeatured={featured}>
+        <div className='job-position'>
+            <div className='job-position-info'>
+                {/* на основании пропсов формируем карточку */}
+                <img
+                    className='job-position-avatar'
+                    src={logo}
+                    alt={company}
+                />
+                <div className='job-position-body'>
+                    <div className='job-postion-company'>
+                        <h3>{company}</h3>
+                        {(isNew || featured) && (
+                            <Stack>
+                                {/* если есть проп new то добавляем бедж нью со своей стилизацией */}
+                                {isNew && (
+                                    <Badge variant="rounded" colorScheme="primary">
+                                        NEW!
+                                    </Badge>
+                                )}
+                                {/* если есть проп featured то добавляем бедж featured со своей стилизацией */}
+                                {featured && (
+                                    <Badge variant="rounded" colorScheme="dark">
+                                        FEATURED
+                                    </Badge>
+                                )}
+                            </Stack>
+                        )}
+                    </div>
+                    <h2 className='job-position-title'>
+                        {position}
+                    </h2>
+                    <Stack>
+                        <div className='job-position-meta'>
+                            {postedAt}
+                        </div>
+                        <div className='job-position-meta'>
+                            {contract}
+                        </div>
+                        <div className='job-position-meta'>
+                            {location}
+                        </div>
+                    </Stack>
+                </div>
             </div>
-            <h2 className='job-position-title'>
-              {position}
-            </h2>
             <Stack>
-              <div className='job-position-meta'>
-                {postedAt}
-              </div>
-              <div className='job-position-meta'>
-                {contract}
-              </div>
-              <div className='job-position-meta'>
-                {location}
-              </div>
+                {badges.map(item => (
+                    // пробежим по массиву с беджами и заполним стек соответствующими беджами
+                    <Badge 
+                        key={item}
+                        onClick={() => hendleAddFilter(item)}
+                    >{item}</Badge>
+                ))}
             </Stack>
-          </div>
         </div>
-        <Stack>
-          {badges.map(item => (
-            // пробежим по массиву с беджами и заполним стек соответствующими беджами
-            <Badge key={item}>{item}</Badge>
-          ))}
-        </Stack>
-      </div>
-    </Card>
-  )
+        </Card>
+    )
 }
 
 export {JobPosition};
 
 JobPosition.propTypes = {
-  id: PropTypes.number,
-  company: PropTypes.string,
-  logo: PropTypes.string,
-  new: PropTypes.bool,
-  featured: PropTypes.bool,
-  position: PropTypes.string,
-  role: PropTypes.string,
-  level: PropTypes.string,
-  postedAt: PropTypes.string,
-  contract: PropTypes.string,
-  location: PropTypes.string,
-  languages: PropTypes.arrayOf(PropTypes.string),
-  tools: PropTypes.arrayOf(PropTypes.string),
+    id: PropTypes.number,
+    company: PropTypes.string,
+    logo: PropTypes.string,
+    new: PropTypes.bool,
+    featured: PropTypes.bool,
+    position: PropTypes.string,
+    role: PropTypes.string,
+    level: PropTypes.string,
+    postedAt: PropTypes.string,
+    contract: PropTypes.string,
+    location: PropTypes.string,
+    languages: PropTypes.arrayOf(PropTypes.string),
+    tools: PropTypes.arrayOf(PropTypes.string),
+    hendleAddFilter: PropTypes.func,
 };
