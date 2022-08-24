@@ -13,12 +13,11 @@ import { JobPosition } from './JobPosition';
 // чтобы повесить экшн (событие клика) на на конкретный бедж, нужна функция
 // сделаем ее на уровне списка и передадим ниже
 
-
 const JobList = () => {
     const dispatch = useDispatch();
     const positions = useSelector(selectAllPositions);
 
-    const hendleAddFilter = (filter) => {
+    const handleAddFilter = (filter) => {
         // функция будет вызывать диспечер, диспечер будет вызывать экшн криэйтор, 
         // и в экшн передаем полученый фильтр
         dispatch(addFilter(filter));
@@ -29,7 +28,7 @@ const JobList = () => {
             {positions.map(item => (
                 <JobPosition 
                     key={item.id} 
-                    hendleAddFilter={hendleAddFilter} 
+                    handleAddFilter={handleAddFilter} 
                     {...item} 
                 />
             ))}

@@ -18,7 +18,7 @@ const JobPosition = ({
         location,
         languages,
         tools,
-        hendleAddFilter,
+        handleAddFilter,
     }) => {
     const badges = [].concat(role, level, ...languages, ...tools); //собираем бедж из разных данных и записываем в одну переменную
 
@@ -73,7 +73,7 @@ const JobPosition = ({
                     // пробежим по массиву с беджами и заполним стек соответствующими беджами
                     <Badge 
                         key={item}
-                        onClick={() => hendleAddFilter(item)}
+                        onClick={() => handleAddFilter(item)}
                     >{item}</Badge>
                 ))}
             </Stack>
@@ -98,5 +98,5 @@ JobPosition.propTypes = {
     location: PropTypes.string,
     languages: PropTypes.arrayOf(PropTypes.string),
     tools: PropTypes.arrayOf(PropTypes.string),
-    hendleAddFilter: PropTypes.func,
+    handleAddFilter: PropTypes.func,
 };
