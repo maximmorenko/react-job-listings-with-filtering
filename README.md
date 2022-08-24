@@ -4,7 +4,7 @@
 
 ## [Сертификат](https://www.udemy.com/certificate/UC-76e27f78-5f2a-48fe-8b32-c80bca3f9d89/)
 
-![](https://github.com/maximmorenko/react-job-listings-with-filtering/blob/master/assets/screen.jpg)
+![](https://github.com/maximmorenko/react-job-listings-with-filtering/blob/master/src/assets/screen.jpg)
 
 ## Пубрикация проекта на vercel
 - create new project
